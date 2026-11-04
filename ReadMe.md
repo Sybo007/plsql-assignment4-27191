@@ -1,68 +1,48 @@
- Implementation Notes
+ Group Assignment IV: Advanced Oracle PL/SQL Programming
 
- Application Overview
-The Student Registration and Grading System was implemented to demonstrate advanced Oracle PL/SQL concepts.  
-It manages students, courses, and enrollments, allowing grade assignment and GPA calculation.
+Group Members
+- Assouman (Student ID: [insert ID])
+- [Partner Name] (Student ID: [insert ID])
 
+Application Description
+This project demonstrates advanced Oracle PL/SQL programming concepts, including:
+- Records (user-defined and %ROWTYPE)
+- Collections (associative arrays, nested tables, VARRAYs)
+- Implicit and explicit cursors
+- Bulk processing with BULK COLLECT and FORALL
+- Stored procedures and functions
+- Exception handling (predefined, user-defined, and RAISE_APPLICATION_ERROR)
 
+The chosen application scenario is Student Course Management, which manages:
+- Student registration and details
+- Course information
+- Enrollments linking students to courses
 
- Records
-- Used `%ROWTYPE` to fetch entire rows from the `students` table into a single variable.  
-- This simplifies handling related attributes without declaring multiple variables.  
-- Example: retrieving a student’s full record and printing their name.
+The implementation shows how PL/SQL features can solve practical problems in database applications, with emphasis on performance and error handling.
 
+How to Run
+1. Create Schema
+   - Run `00_schema/01_create_tables.sql` to create tables, relationships, and constraints.
+   - Run `00_schema/02_insert_sample_data.sql` to insert sample records.
 
+2. Compile PL/SQL Code
+   - Compile stored procedures in `01_procedures/`.
+   - Compile stored functions in `02_functions/`.
 
-Collections
-- Implemented associative arrays to store multiple grades in memory.  
-- Collections allow fast access and manipulation of sets of values without repeated queries.  
-- Useful for temporary storage of results during bulk operations.
+3. Test Application
+   - Run test cases in `03_tests/test_success_cases.sql` for successful operations.
+   - Run `03_tests/test_error_cases.sql` to verify exception handling.
+   - Check screenshots in `screenshots/` for execution outputs.
 
+4. Documentation
+   - Review `docs/IMPLEMENTATION_NOTES.md` for implementation details and performance considerations.
 
+5. Execution Environment
+   - Use Oracle Database Free (23c/26ai) with SQL Developer.
 
-  Cursors
-- Implicit cursors: Used with `UPDATE` statements to check how many rows were affected (`SQL%ROWCOUNT`).  
-- Explicit cursors: Declared for iterating through multiple student names.  
-- Cursor FOR loops simplify row‑by‑row processing while keeping code readable.
-
-
-
-  Bulk Processing
-- BULK COLLECT: Retrieves multiple rows into a collection in one step, reducing context switches.  
-- FORALL: Performs bulk updates on enrollments, improving performance compared to row‑by‑row updates.  
-- This approach is especially important when dealing with large datasets, as it minimizes round trips between SQL and PL/SQL engines.
-
-
-
-  Stored Procedures
-- `assign_grade` procedure encapsulates grade assignment logic.  
-- Includes input parameters for student ID, course ID, and grade.  
-- Uses `RAISE_APPLICATION_ERROR` to provide meaningful feedback when no enrollment is found.
-
-
-
-  Functions
-- `get_student_avg` function calculates GPA based on grades.  
-- Returns a numeric average that can be used in SQL queries or PL/SQL blocks.  
-- Demonstrates how functions can integrate with SQL for reporting.
-
+6. Verification
+   - Ensure all scripts run without errors.
+   - Confirm records, collections, cursors, and bulk operations are demonstrated.
+   - Validate exception handling with screenshots.
 
 
- Exception Handling
-- Predefined exceptions: `NO_DATA_FOUND` handled in the GPA function.  
-- User‑defined exceptions: `RAISE_APPLICATION_ERROR` used in the procedure when enrollment is missing.  
-- Ensures errors are not silently ignored and users receive clear messages.
-
-
-
-  Performance Considerations
-- Row‑by‑row processing is slower because each row requires a separate context switch.  
-- Bulk operations (`BULK COLLECT`, `FORALL`) batch work, reducing overhead and improving scalability.  
-- Collections and cursors provide flexibility for both small and large datasets.  
-- Exception handling ensures robustness even under heavy load or unexpected input.
-
-
-
-  Conclusion
-This implementation demonstrates how Oracle PL/SQL features work together to build a practical application.  
-By combining records, collections, cursors, bulk processing, procedures, functions, and exception handling, the system achieves both clarity and performance while meeting academic requirements.
