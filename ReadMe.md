@@ -1,8 +1,7 @@
  Group Assignment IV: Advanced Oracle PL/SQL Programming
 
 Group Members
-- Assouman (Student ID: [insert ID])
-- [Partner Name] (Student ID: [insert ID])
+- Assouman SIBOMANA Student ID: 27191
 
 Application Description
 This project demonstrates advanced Oracle PL/SQL programming concepts, including:
